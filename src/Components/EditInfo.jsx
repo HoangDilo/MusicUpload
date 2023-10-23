@@ -15,7 +15,7 @@ import { storage } from '../FireBaseConnect/firebase'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { setLogLevel } from 'firebase/app'
 
-function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3, setTitleStep3, setDurationStep3, setGenreStep3, setImgSrcStep3 }) {
+function EditInfo({ fileInput, setStep, setShown1, setShown2, setUrl, setArtistStep3, setTitleStep3, setDurationStep3, setGenreStep3, setImgSrcStep3 }) {
     const [isOk, setIsOk] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -81,7 +81,8 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
     }
     const handleInputImage = (event) => {
         const img = event.target.files[0];
-        if (img.type === 'image/jpeg' && img.size <= 5000000) {
+        //console.log(event.target.files[0]);
+        if ((img.type === 'image/jpeg' || img.type === 'image/png') && img.size <= 5000000) {
             const img_src = URL.createObjectURL(event.target.files[0]);
             console.log(img_src);
             setImgSrc(img_src);
@@ -116,16 +117,19 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
                 setDurationStep3(duration);
                 setGenreStep3(optionValue);
                 setImgSrcStep3(imgSrc)
-                setToastMessage('Upload successfully!');
+                setShown1(true);
                 getDownloadURL(fileRef).then((url) => {
                     setUrl(url);
                     setStep(3);
                 });
             })
-        }      
+        } else {
+            console.log('vao else');
+            setShown2(true);
+        }
     }
     const handleChangeArtist = () => {
-        setArtist(event.target.value)
+        setArtist(event.target.value);
     }
     const configDateTime = () => {
         const datetime = new Date();

@@ -23,3 +23,9 @@
     color: #1AB232;
     background: #d8ffde;
 }
+
+.fail {
+    border: 1px solid #FF4040;
+    color: #FF4040;
+    background: #ffe7e7;
+}

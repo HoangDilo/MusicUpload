@@ -5,7 +5,7 @@ import CopyIcon from '../SVGComponents/CopyIcon'
 import GreenTick from '../SVGComponents/GreenTick'
 import { useState } from 'react'
 
-function FinalStep({ title, artist, duration, genre, url, imgSrc, setStep, setToastMessage }) {
+function FinalStep({ title, artist, duration, genre, url, imgSrc, setStep }) {
     const [isCoppied, setIsCoppied] = useState(false);
     
     const handleCopy = () => {
@@ -63,7 +63,7 @@ function FinalStep({ title, artist, duration, genre, url, imgSrc, setStep, setTo
             </div>
             <div className='final-box'>
                 <div className='img-container'>
-                    <img src={imgSrc} className='final-img' />
+                    {imgSrc && <img src={imgSrc} className='final-img' />}
                 </div>
                 <div className='result'>
                     <div className='notify'>

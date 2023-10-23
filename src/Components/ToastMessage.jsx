@@ -3,27 +3,24 @@ import GreenTick from '../SVGComponents/GreenTick'
 import './ToastMessage.css'
 import X from '../SVGComponents/X'
 
-function ToastMessage({ message, type }) {
-    const [isShown, setIsShown] = useState(true);
-    const handleClose = (status) => {
-        setIsShown(status);
-    }
+function ToastMessage({ message, type, shown, setShown }) {
 
     useEffect(() => {
         setTimeout(() => {
-            setIsShown(false);
+            setShown(false);
         }, 5000);
-    }, [isShown])
+    }, [shown])
 
     return (
         <>
-            {type === 'success' && (isShown &&
-                <div className='toast success'>
-                    <GreenTick />
+            {shown &&
+                <div className={`toast ${type}`}>
+                    {type === 'success' && <GreenTick color="#1AB232"/>}
+                    {type === 'fail' && <GreenTick color="#FF4040" />}
                     <span>{message}</span>
-                    <X onClick={handleClose} />
+                    <X onClick={() => setShown(false)} />
                     {/* <div className='icon-greentick icon'></div> */}
-                </div>)
+                </div>
             }
         </>
     )
