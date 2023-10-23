@@ -275,7 +275,7 @@ button {
     width: 200px;
 }
 
-.error-input {
+.error {
     outline: 1px solid red;
 }
 

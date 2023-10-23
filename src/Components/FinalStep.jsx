@@ -66,7 +66,7 @@ function FinalStep({ title, artist, duration, genre, url, imgSrc, setStep, setTo
                             <span>
                                 <span className='song'>{title}</span>
                                 <span> - </span>
-                                <span className='singer'>{artist}</span>
+                                <span className='singer'>{artist ? artist : 'N/A'}</span>
                             </span>
                         </div>
                         <div className='duration-genre'>

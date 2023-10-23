@@ -17,8 +17,6 @@ function App() {
   const [genre, setGenre] = useState('');
   const [imgSrc, setImgSrc] = useState('');
 
-  console.log(toastMessage);
-
   return (
     <Fragment>
       {toastMessage && <ToastMessage message={toastMessage} type="success"/>}

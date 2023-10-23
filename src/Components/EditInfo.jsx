@@ -8,14 +8,15 @@ import ArrowUp from '../SVGComponents/ArrowUp'
 import Camera from '../SVGComponents/Camera'
 import Spinner from '../SVGComponents/Spinner'
 import Selection from './Selection'
-import { useEffect, useRef, useState } from 'react'
+import Inputs from './Inputs'
+import list_genre from '../assets/ListGenre'
+import { useEffect, useState } from 'react'
 import { storage } from '../FireBaseConnect/firebase'
-import { ref, uploadBytes, listAll, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { setLogLevel } from 'firebase/app'
 
 function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3, setTitleStep3, setDurationStep3, setGenreStep3, setImgSrcStep3 }) {
-    const [isTitleError, setIsTitleError] = useState('');
-    const [isSlugError, setIsSlugError] = useState('');
+    const [isOk, setIsOk] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const [imgInputError, setImgInputError] = useState(false);
@@ -96,49 +97,31 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
         setIsArrowUp(!isArrowUp);
         setOptionValue(event.target.innerText)
     }
-    const validateTitle = () => {
-        if (!title) {
-            setIsTitleError('error-input');
-        } else {
-            setIsTitleError('');
-        }
-    }
-    const handleFocusTitle = () => {
-        setIsTitleError('');
-    }
-    const validateSlug = () => {
-        if (!slug) {
-            setIsSlugError('error-input');
-        } else {
-            setIsSlugError('');
-        }
-    }
-    const handleFocusSlug = () => {
-        setIsSlugError('');
-    }
     const handleCancel = () => {
         setStep(1);
     }
     const handleSave = () => {
-        setIsLoading(true);
-        const fileRef = ref(storage, `files/${title}_${configDateTime()}`);
-        const uploadTask = uploadBytesResumable(fileRef, fileInput)
-        uploadTask.on('state_changed', (snapshot) => {
-            console.log((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        }, (error) => {
-            console.log('An error occurs', error);
-        }, () => {
-            setTitleStep3(title);
-            setArtistStep3(artist);
-            setDurationStep3(duration);
-            setGenreStep3(optionValue);
-            setImgSrcStep3(imgSrc)
-            setToastMessage('Upload successfully!');
-            getDownloadURL(fileRef).then((url) => {
-                setUrl(url);
-                setStep(3);
-            });
-        })
+        if (title && slug) {
+            setIsLoading(true);
+            const fileRef = ref(storage, `files/${title}_${configDateTime()}`);
+            const uploadTask = uploadBytesResumable(fileRef, fileInput)
+            uploadTask.on('state_changed', (snapshot) => {
+                console.log((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            }, (error) => {
+                console.log('An error occurs', error);
+            }, () => {
+                setTitleStep3(title);
+                setArtistStep3(artist);
+                setDurationStep3(duration);
+                setGenreStep3(optionValue);
+                setImgSrcStep3(imgSrc)
+                setToastMessage('Upload successfully!');
+                getDownloadURL(fileRef).then((url) => {
+                    setUrl(url);
+                    setStep(3);
+                });
+            })
+        }      
     }
     const handleChangeArtist = () => {
         setArtist(event.target.value)
@@ -153,6 +136,7 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
         const sec = datetime.getSeconds();
         return `${year}${month}${date}_${hour}${min}${sec}`;
     }
+
     return (
         <div className="edit-container">
             <div className='title'>
@@ -235,18 +219,7 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
                     </div>
 
                     <div className='form'>
-                        <div className='input-container'>
-                            <label htmlFor="txtTitle" className='title-label'>
-                                Title
-                                <span className='star'>*</span>
-                            </label>
-                            <input type="text" name="txtTitle" id="txtTitle" className={isTitleError} maxLength={100} value={title} onChange={handleTyping} onBlur={validateTitle} onFocus={handleFocusTitle} />
-                            {isTitleError === 'error-input' &&
-                                <span className='img-error-message'>
-                                    This field is required.
-                                </span>
-                            }
-                        </div>
+                        <Inputs inputValue={title} label="Title" required onChange={handleTyping} />
                         <div className='fixed-properties'>
                             <div className='input-container'>
                                 <div className='props-title'>
@@ -273,18 +246,7 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
                                 </div>
                             </div>
                         </div>
-                        <div className='input-container'>
-                            <label htmlFor="txtSlug">
-                                Slug
-                                <span className='star'>*</span>
-                            </label>
-                            <input type="text" name="" id="txtSlug" className={isSlugError} maxLength={100} value={slug} onChange={handleTypingSlug} onBlur={validateSlug} onFocus={handleFocusSlug} />
-                            {isSlugError === 'error-input' &&
-                                <span className='img-error-message'>
-                                    This field is required
-                                </span>
-                            }
-                        </div>
+                        <Inputs inputValue={slug} label="Slug" required onChange={handleTypingSlug} />
                         <div className='genre-artist'>
                             <div className='input-container select-opt'>
                                 <label htmlFor="selectGenre">Genre</label>
@@ -298,12 +260,8 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
                                 {isArrowUp &&
                                     <div className='scrollable-container'>
                                         <div className='selections'>
-                                            <Selection value="Balad" onclick={event => handleChose(event)}/>
-                                            <Selection value="Rock" onclick={event => handleChose(event)}/>
-                                            <Selection value="R&B" onclick={event => handleChose(event)}/>
-                                            <Selection value="Acoustic" onclick={event => handleChose(event)}/>
-                                            <Selection value="Jaz" onclick={event => handleChose(event)}/>
-                                            <Selection value="Pops" onclick={event => handleChose(event)}/>
+                                            {list_genre.map((item, index) =>
+                                                <Selection value={item} onclick={event => handleChose(event)} key={index} />)}
                                         </div>
                                     </div>
                                 }
