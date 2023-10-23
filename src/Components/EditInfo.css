@@ -1,0 +1,294 @@
+
+input {
+    padding: 0px 8px;
+    font-size: 10px;
+    width: 100%;
+
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    position: relative;
+    padding-top: 88px;
+    align-items: center;
+}
+
+.process-bar-2 {
+    display: flex;
+}
+
+.edit-box {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px 18px 24px;
+    gap: 30px;
+    width: 645px;
+    border: 1px solid #DCDCDC;
+    border-radius: 10px;
+}
+
+.top-box {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.input-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    user-select: none;
+    min-width: 200px;
+}
+
+.bg-img-container {
+    width: 200px;
+    height: 200px;
+    display: flex;
+}
+
+.fake-background {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, #9A8080 0%, #82A8C2 100%);
+}
+
+.opt-button {
+    position: absolute;
+    bottom: 19px;
+}
+
+.placeholder-1 {
+    background: white;
+    border-radius: 4px;
+    width: 111px;
+    padding: 2px 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.placeholder-1 > span {
+    font-size: 10px;
+}
+
+.placeholder-1-container {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.placeholder-1-container > span {
+    font-size: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    font-size: 10px;
+}
+
+input {
+    height: 28px;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.title-label {
+    font-size: 10px;
+    text-align: start;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.input-title-container > input {
+    width: 100%;
+}
+
+.fixed-properties {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.props-values {
+    color: #979797;
+}
+
+.genre-artist {
+    display: flex;
+    gap: 16px;
+}
+
+#selectGenre:disabled {
+    background-color: white;
+    color: black;
+}
+
+.selection-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.arrows {
+    position: absolute;
+    display: flex;
+    right: 8px;
+}
+
+.text-area-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+textarea {
+    padding: 8px;
+    font-size: 10px;
+    width: 100%;
+    resize: none;
+    border-radius: 4px;
+    border: 1px solid #DCDCDC;
+}
+
+.bot-box {
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+}
+
+button {
+    padding: 2px 8px;
+    border: none;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.save {
+    width: 45px;
+    height: 19px;
+    border-radius: 4px;
+    background:#FF6B00;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.save:hover {
+    background: #e25e00;
+}
+
+.cancel {
+    cursor: pointer;
+    background: none;
+    font-size: 10px;
+}
+
+#inputImg {
+    display: none;
+}
+
+.select-opt {
+    position: relative;
+}
+
+.scrollable-container {
+    position: absolute;
+    top: 50px;
+    border-radius: 4px;
+    border: 1px solid #DCDCDC;
+    width: 100%;
+    padding: 4px 2px 0px 0px;
+    background: white;
+
+}
+
+.selections {
+    height: 100px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.selections::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0);
+}
+
+.selections::-webkit-scrollbar-thumb {
+    background: rgb(212, 212, 212);
+    border-radius: 4px;
+    margin: 1px;
+} 
+
+.selections-child {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0px 8px;
+    min-height: 19px;
+    cursor: pointer;
+}
+
+.selections-child:hover {
+    background: #F6F6F6;
+}
+
+.song-image {
+    width: 100%;
+    height: 100%;
+}
+
+.img-error-message {
+    color: red;
+    font-size: 10px;
+    width: 200px;
+}
+
+.error-input {
+    outline: 1px solid red;
+}
+
+.loading {
+    display: flex;
+    animation: spin 2s infinite linear;
+}
+
+@keyframes spin{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

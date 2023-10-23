@@ -1,0 +1,25 @@
+
+.toast {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+    border-radius: 6px;
+    width: 325px;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.toast > span {
+    width: 100%;
+}
+
+.success {
+    border: 1px solid #1AB232;
+    color: #1AB232;
+    background: #d8ffde;
+}

@@ -1,0 +1,96 @@
+
+.final-container {
+    padding: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    align-items: center;
+}
+
+.final-box {
+    width: 645px;
+    border-radius: 10px;
+    border: 1px solid #DCDCDC;
+    box-shadow: 0px 0px 8px 0px rgba(51, 51, 51, 0.10);
+    padding: 24px 24px 18px 24px;
+    display: flex;
+    gap: 24px;
+}
+
+.img-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #9A8080 0%, #82A8C2 100%);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.final-img {
+    width: 100%;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.notify {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.song-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    font-size: 14px;
+}
+
+.duration-genre {
+    font-size: 12px;
+    display: flex;
+    gap: 24px;
+}
+
+#linkSong {
+    width: 406px;
+    background: #F6F6F6;
+    color: #0094FF;
+    padding-right: 36px;
+    text-overflow: ellipsis;
+}
+
+.link-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icon-container-2 {
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+}
+
+.nav-links {
+    margin-top: 26px;
+    font-size: 14px;
+}
+
+.links {
+    color: #0094FF;
+    cursor: pointer;
+}
+
+.links:hover {
+    text-decoration: underline;
+}
