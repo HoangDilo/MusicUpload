@@ -18,14 +18,14 @@ function App() {
   const [imgSrc, setImgSrc] = useState('');
 
   return (
-    <Fragment>
+    <>
       {toastMessage && <ToastMessage message={toastMessage} type="success"/>}
       <div className='main-content'>
         {step === 1 && <Upload setStep={setStep} setFileInput={setFileInput} />}
         {step === 2 && <EditInfo fileInput={fileInput} setStep={setStep} setToastMessage={setToastMessage} setUrl={setUrl} setArtistStep3={setArtist} setTitleStep3={setTitle} setDurationStep3={setDuration} setGenreStep3={setGenre} setImgSrcStep3={setImgSrc} />}
         {step === 3 && <FinalStep title={title} artist={artist} duration={duration} genre={genre} url={url} imgSrc={imgSrc} setStep={setStep} setToastMessage={setToastMessage} />}
       </div>
-    </Fragment>
+    </>
 
   )
 }

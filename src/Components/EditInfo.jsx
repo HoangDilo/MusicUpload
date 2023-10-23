@@ -91,6 +91,7 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
         }
     }
     const handleClickArrows = () => {
+        console.log('click');
         setIsArrowUp(!isArrowUp);
     }
     const handleChose = (event) => {
@@ -250,12 +251,12 @@ function EditInfo({ fileInput, setStep, setToastMessage, setUrl, setArtistStep3,
                         <div className='genre-artist'>
                             <div className='input-container select-opt'>
                                 <label htmlFor="selectGenre">Genre</label>
-                                <div className='selection-container'>
-                                    <div className='arrows' onClick={handleClickArrows}>
+                                <div className='selection-container' onClick={handleClickArrows}>
+                                    <div className='arrows' >
                                         {isArrowUp && <ArrowUp />}
                                         {!isArrowUp && <ArrowDown />}
                                     </div>
-                                    <input type="text" name="" id="selectGenre" disabled value={optionValue} />
+                                    <input type="text" name="" id="selectGenre" readOnly value={optionValue} />
                                 </div>
                                 {isArrowUp &&
                                     <div className='scrollable-container'>

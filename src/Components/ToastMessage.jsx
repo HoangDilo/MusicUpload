@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import GreenTick from '../SVGComponents/GreenTick'
 import './ToastMessage.css'
 import X from '../SVGComponents/X'
@@ -6,9 +6,14 @@ import X from '../SVGComponents/X'
 function ToastMessage({ message, type }) {
     const [isShown, setIsShown] = useState(true);
     const handleClose = (status) => {
-        console.log(status);
-        setIsShown(status)
+        setIsShown(status);
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsShown(false);
+        }, 5000);
+    }, [isShown])
 
     return (
         <>

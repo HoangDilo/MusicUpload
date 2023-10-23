@@ -138,9 +138,11 @@ input {
     gap: 16px;
 }
 
-#selectGenre:disabled {
+#selectGenre {
     background-color: white;
     color: black;
+    cursor: default;
+    outline: none;
 }
 
 .selection-container {

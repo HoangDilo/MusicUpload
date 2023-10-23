@@ -2,10 +2,18 @@ import './FinalStep.css'
 import CheckedIcon from '../SVGComponents/CheckedIcon'
 import CurrentStepIcon from '../SVGComponents/CurrentStepIcon'
 import CopyIcon from '../SVGComponents/CopyIcon'
+import GreenTick from '../SVGComponents/GreenTick'
+import { useState } from 'react'
 
 function FinalStep({ title, artist, duration, genre, url, imgSrc, setStep, setToastMessage }) {
+    const [isCoppied, setIsCoppied] = useState(false);
+    
     const handleCopy = () => {
         navigator.clipboard.writeText(url);
+        setIsCoppied(true);
+        setTimeout(() => {
+            setIsCoppied(false);
+        }, 5000);
     }
 
     return (
@@ -55,7 +63,7 @@ function FinalStep({ title, artist, duration, genre, url, imgSrc, setStep, setTo
             </div>
             <div className='final-box'>
                 <div className='img-container'>
-                    <img src={imgSrc} className='final-img'/>
+                    <img src={imgSrc} className='final-img' />
                 </div>
                 <div className='result'>
                     <div className='notify'>
@@ -63,29 +71,30 @@ function FinalStep({ title, artist, duration, genre, url, imgSrc, setStep, setTo
                     </div>
                     <div className='song-info'>
                         <div className='song-singer'>
-                            <span>
-                                <span className='song'>{title}</span>
-                                <span> - </span>
-                                <span className='singer'>{artist ? artist : 'N/A'}</span>
-                            </span>
+                            {`${title} - ${artist ? artist : 'N/A'}`}
                         </div>
                         <div className='duration-genre'>
                             <span className='gray-text'>{duration}</span>
                             <span className='gray-text'>{genre}</span>
                         </div>
                     </div>
-                    <div className='link-container'>
-                        <div className='icon-container-2' onClick={handleCopy}>
-                            <CopyIcon />
+                    <div className='link-container-container'>
+                        <div className='link-container'>
+                            <div className='icon-container-2' onClick={handleCopy}>
+                                <CopyIcon />
+                            </div>
+                            <div className='linkSong'>
+                                <a href={url} target='_blank' rel="noreferrer">{url}</a>
+                            </div>
                         </div>
-                        <input type="text" name="" id="linkSong" value={url} disabled />
+                        {isCoppied && <GreenTick />}
                     </div>
                 </div>
             </div>
             <div className='nav-links'>
-                <span className='links' onClick={() => {setStep(1)}}>Go Home</span>
+                <span className='links' onClick={() => { setStep(1) }}>Go Home</span>
                 <span> or </span>
-                <span className='links' onClick={() => {setStep(1)}}>Upload another track</span>
+                <span className='links' onClick={() => { setStep(1) }}>Upload another track</span>
             </div>
         </div>
     )
